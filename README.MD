@@ -21,12 +21,15 @@ bvs = list_maker()
 # bvs = list_maker()
 bvs = ['BV号1', 'BV号2', 'BV号3', ...]
 ````
-# Credit
+# 所有文件
 ### Main.py
-我自己[Chuan Peng][1]；B站：[加把劲假面骑士][2]
+**Credit: ** 我自己[Chuan Peng][1]；B站：[加把劲假面骑士][2]\
 ### Login.py
-忘了抄的是哪位大神的了，纯净版[这边请][3]
-
+**Credit: ** 忘了抄的是哪位大神的了，纯净版[这边请][3]\
+### B站UID_cookies.json
+json类型的用户cookies
+### Viewed.txt
+已观看视频的列表，注意保存，下次使用将参考该文件的内容来添加视频。
 
 
 [1]: https://erichuanp.com
