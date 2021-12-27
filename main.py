@@ -6,10 +6,10 @@ import requests
 import Login
 
 
-def scan():
+def scan(filena):
     dirs = os.listdir('.')
     for dir in dirs:
-        if not dir.find('.json') == -1:
+        if not dir.find(filena) == -1:
             return dir
     return 'None'
 
@@ -88,9 +88,12 @@ def time_check(into):
     return -1
 
 
-while scan().find('.json') == -1:
+readytxt = open('Viewed.txt', 'a')
+readytxt.close()
+
+while scan('json') == 'None':
     Login.login_code()
-filename = scan()
+filename = scan('json')
 
 into = input('需要将多久以前的视频添加到列表？: ')
 
@@ -108,6 +111,8 @@ with open(filename, 'r', encoding='UTF-8') as f:
 UID = cookies['DedeUserID']
 
 bvs = list_maker()
+
+
 # bvs =   # 手动添加列表
 
 
@@ -143,19 +148,26 @@ def make_newbvs():
     while not viewtext.find('b23.tv/') == -1:
         viewlist.append(viewtext[viewtext.find('b23.tv/') + 7:viewtext.find('b23.tv/') + 19])
         viewtext = viewtext[viewtext.find('b23.tv/') + 7:]
-
     for viewing in viewlist:
         if viewing in newlist:
             newlist.remove(viewing)
 
     print(newlist)
-    print('\n去掉重复视频之后，以上是未添加到稍后再看列表内包含' + str(len(newlist)) + '个视频的列表，请按需复制')
+    print('\n去掉重复视频之后，以上是未添加到稍后再看的包含' + str(len(newlist)) + '个视频的列表，请按需复制')
     print('稍后再看列表已满')
     return newlist
 
 
+alreadyview = []
+for eachline in open('Viewed.txt', 'r').readlines():
+    alreadyview.append(eachline)
+for vvdd in alreadyview:
+    vvdd = vvdd.replace('\n', '')
+    if vvdd in bvs:
+        bvs.remove(vvdd)
+
 numview = len(re.findall('b23.tv', vieweles.text))
-print('在此期间一共有' + str(len(bvs)) + '个视频')
+print('去掉已观看的视频，在此期间一共有' + str(len(bvs)) + '个视频')
 print('您的稍后再看列表内有' + str(numview) + '个视频')
 
 if numview < 100:
@@ -195,4 +207,30 @@ if numview < 100:
             print('未知错误 错误代码: ' + code)
 else:
     newbvs = make_newbvs()
+
+vieweles = session.get(
+    url='https://api.bilibili.com/x/v2/history/toview',
+    cookies=cookies
+)
+viewedlist_for_CVd = []
+viewtext_for_CVd = vieweles.text
+while not viewtext_for_CVd.find('b23.tv/') == -1:
+    viewedlist_for_CVd.append(
+        viewtext_for_CVd[viewtext_for_CVd.find('b23.tv/') + 7:viewtext_for_CVd.find('b23.tv/') + 19])
+    viewtext_for_CVd = viewtext_for_CVd[viewtext_for_CVd.find('b23.tv/') + 7:]
+
+checklist = []
+getinto = open('Viewed.txt', 'a')
+if not len(open('Viewed.txt', 'r').readlines()) == 0:
+    for line in open('Viewed.txt', 'r').readlines():
+        checklist.append(line)
+for check in checklist:
+    check = check.replace('\n', '')
+    if check in viewedlist_for_CVd:
+        viewedlist_for_CVd.remove(check)
+for viewed in viewedlist_for_CVd:
+    getinto.write(viewed + '\n')
+getinto.close()
+
+print('请保管好Viewed.txt文件')
 print('程序已结束')
