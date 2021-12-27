@@ -10,7 +10,7 @@
 5. 确认是否需要添加到稍后再看
 6. 按需复制未添加到稍后再看视频的列表
 
-Tip1: 请保管好Viewed.txt文件，下次使用不会将存在于Viewed.txt里面的视频BV号添加到稍后再看
+Tip1: 请保管好Viewed.txt文件，下次使用不会将存在于Viewed.txt里面的视频BV号添加到稍后再看\
 Tip2: 删除第二行开头的 # 可以手动添加列表
 ````Python
 bvs = list_maker()
