@@ -23,9 +23,9 @@ bvs = ['BV号1', 'BV号2', 'BV号3', ...]
 ````
 # 所有文件
 ### Main.py
-**Credit: 我自己[Chuan Peng][1]；B站：[加把劲假面骑士][2]
+**Credit**： 我自己[Chuan Peng][1]；B站：[加把劲假面骑士][2]
 ### Login.py
-**Credit: 忘了抄的是哪位大神的了，纯净版[这边请][3]
+**Credit**： 忘了抄的是哪位大神的了，纯净版[这边请][3]
 ### B站UID_cookies.json
 json类型的用户cookies
 ### Viewed.txt
