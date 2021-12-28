@@ -10,7 +10,8 @@
 5. 确认是否需要添加到稍后再看
 6. 按需复制未添加到稍后再看视频的列表
 
-Tip: 删除第二行开头的 # 可以手动添加列表
+Tip1: 请保管好Viewed.txt文件，下次使用不会将存在于Viewed.txt里面的视频BV号添加到稍后再看\
+Tip2: 删除第二行开头的 # 可以手动添加列表
 ````Python
 bvs = list_maker()
 # bvs =   # 手动添加列表
@@ -20,12 +21,15 @@ bvs = list_maker()
 # bvs = list_maker()
 bvs = ['BV号1', 'BV号2', 'BV号3', ...]
 ````
-# Credit
+# 所有文件
 ### Main.py
-我自己[Chuan Peng][1]；B站：[加把劲假面骑士][2]
+**Credit**: 我自己[Chuan Peng][1]；B站：[加把劲假面骑士][2]
 ### Login.py
-忘了抄的是哪位大神的了，纯净版[这边请][3]
-
+**Credit**: 忘了抄的是哪位大神的了，纯净版[这边请][3]
+### (在第一次运行之后创建)B站UID_cookies.json
+json类型的用户cookies
+### (在第一次运行之后创建)Viewed.txt
+已观看视频的列表，注意保存，下次使用将参考该文件的内容来添加视频。
 
 
 [1]: https://erichuanp.com
