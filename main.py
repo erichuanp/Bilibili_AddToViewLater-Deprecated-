@@ -234,3 +234,4 @@ getinto.close()
 
 print('请保管好Viewed.txt文件')
 print('程序已结束')
+os.system("pause")
