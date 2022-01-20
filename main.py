@@ -171,7 +171,7 @@ print('去掉已观看的视频，在此期间一共有' + str(len(bvs)) + '个�
 print('您的稍后再看列表内有' + str(numview) + '个视频')
 
 if numview < 100:
-    if input('是否要添加' + str(100 - numview) + '个视频到稍后再看(y/n)：') == 'y':
+    if input('是否要添加' + str(len(bvs)) + '个视频到稍后再看(y/n)：') == 'y':
         if len(bvs) <= 100 - numview:
             for bv in bvs:
                 response = session.post(
