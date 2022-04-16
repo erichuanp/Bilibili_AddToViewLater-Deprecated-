@@ -96,7 +96,8 @@ while scan('json') == 'None':
 filename = scan('json')
 
 into = input('需要将多久以前的视频添加到列表？: ')
-
+if into == '':
+    into = '3d'
 while time_check(into) == -1:
     print('请重新输入时间(纯数字或者数字+d/h/m/s)', end=': ')
     into = input()
