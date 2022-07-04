@@ -5,7 +5,7 @@ import re
 import requests
 import Login
 
-
+# region
 def scan(filena):
     dirs = os.listdir('.')
     for dir in dirs:
@@ -32,8 +32,7 @@ def list_maker():
     print('第' + str(page) + '页，翻页中...')
 
     keep = True
-    while keep and int(
-            response.text[response.text.rfind('timestamp') + 11:response.text.rfind('timestamp') + 21]) > endDate:
+    while keep and int(response.text[response.text.rfind('timestamp') + 11:response.text.rfind('timestamp') + 21]) > endDate:
         url = 'https://api.vc.bilibili.com/dynamic_svr/v1/dynamic_svr/dynamic_history?uid=' + UID + '&offset_dynamic_id=' + historyOffset + '&type=8&from=&platform=web'
         response = session.get(
             url=url,
@@ -95,9 +94,10 @@ while scan('json') == 'None':
     Login.login_code()
 filename = scan('json')
 
-into = input('需要将多久以前的视频添加到列表？: ')
-if into == '':
-    into = '3d'
+# into = input('需要将多久以前的视频添加到列表？: ')
+# if into == '':
+#     into = '3d'
+into = '3d'
 while time_check(into) == -1:
     print('请重新输入时间(纯数字或者数字+d/h/m/s)', end=': ')
     into = input()
@@ -172,7 +172,9 @@ print('去掉已观看的视频，在此期间一共有' + str(len(bvs)) + '个�
 print('您的稍后再看列表内有' + str(numview) + '个视频')
 
 if numview < 100:
-    if input('是否要添加' + str(len(bvs)) + '个视频到稍后再看(y/n)：') == 'y':
+    # check = input('是否要添加' + str(len(bvs)) + '个视频到稍后再看(y/n)：')
+    check = 'y'
+    if check == 'y':
         if len(bvs) <= 100 - numview:
             for bv in bvs:
                 response = session.post(
@@ -192,20 +194,21 @@ if numview < 100:
             newbvs = make_newbvs()
 
         code = response.headers['Bili-Status-Code']
-        if code == '0':
-            print('成功添加到稍后再看')
-        elif code == '-101':
-            print('账号未登录')
-        elif code == '-111':
-            print('csrf校验失败')
-        elif code == '-400':
-            print('请求错误')
-        elif code == '90001':
-            print('列表已满')
-        elif code == '90003':
-            print('稿件已被删除')
-        else:
-            print('未知错误 错误代码: ' + code)
+        match code:
+            case 0:
+                print('成功添加到稍后再看')
+            case -101:
+                print('账号未登录')
+            case -111:
+                print('csrf校验失败')
+            case -400:
+                print('请求错误')
+            case 90001:
+                print('列表已满')
+            case 90003:
+                print('稿件已被删除')
+        if code != 0:
+            print('错误代码: ' + code)
 else:
     newbvs = make_newbvs()
 
@@ -235,4 +238,6 @@ getinto.close()
 
 print('请保管好Viewed.txt文件')
 print('程序已结束')
-os.system("pause")
+# os.system("pause")
+
+# endregion

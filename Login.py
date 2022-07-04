@@ -1,7 +1,7 @@
 from MyQR import myqr
 import requests
 import json
-import cv2
+from cv2 import cv2
 import os
 import re
 
