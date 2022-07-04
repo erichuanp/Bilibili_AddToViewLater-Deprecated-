@@ -1,7 +1,7 @@
 from MyQR import myqr
 import requests
 import json
-from cv2 import cv2
+import cv2
 import os
 import re
 
@@ -44,7 +44,6 @@ def login_code():
         os.remove(f"{key}.jpg")
 
         return 'UID: ' + uid + '的Cookie已经创建完毕'
-
     except:
         return f"错误码:{r1['data']}"
 
