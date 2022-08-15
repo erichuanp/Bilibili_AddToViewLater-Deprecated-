@@ -1,6 +1,5 @@
 import time
 import Core
-import webbrowser
 from os import system
 
 
@@ -16,8 +15,6 @@ if mode != 'a':
     if not time_input.isdigit():
         print('输入了非数字，默认解析前三天的视频。')
         time_input = 3
-
-print('一般需要解析(2*天数+1)页视频...')
 end_time = int(time.time()) - int(time_input) * 86400  # 获取 time_input 天前的时间戳
 # endregion
 
@@ -45,8 +42,9 @@ else:
     log.close()
     print(msg)
 Core.update_viewed()
-webbrowser.open('https://www.bilibili.com/watchlater/#/list')
+print(Core.del_to_view())
 print('程序已结束\n')
+time.sleep(5)
 if mode != 'a':
     system('pause')
 # endregion
