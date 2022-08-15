@@ -42,7 +42,6 @@ else:
     log.close()
     print(msg)
 Core.update_viewed()
-print(Core.del_to_view())
 print('程序已结束\n')
 time.sleep(5)
 if mode != 'a':
